@@ -2,15 +2,15 @@ import streamlit as st # type: ignore
 import pickle
 import pandas as pd
 import requests
-
+from dotenv import load_dotenv
 
 movies_dict=pickle.load(open('movie_dict.pkl','rb'))
 movies=pd.DataFrame(movies_dict)
-
 ndf=movies
-
+load_dotenv()
+API_KEY = os.getenv("TMDB_API_KEY")
 def fetch_poster(id):
-    url = "https://api.themoviedb.org/3/movie/{}?api_key=api_key={TMDB_API_KEY}&language=en-US"
+    url = f"https://api.themoviedb.org/3/movie/{id}?api_key={API_KEY}&language=en-US"
     data = requests.get(url)
     data = data.json()
     poster_path = data['poster_path']
