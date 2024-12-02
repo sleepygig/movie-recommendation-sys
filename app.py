@@ -10,7 +10,7 @@ movies=pd.DataFrame(movies_dict)
 ndf=movies
 
 def fetch_poster(id):
-    url = "https://api.themoviedb.org/3/movie/{}?api_key=6ab21013790aa2255b6ec8f6e2c54d90&language=en-US".format(id)
+    url = "https://api.themoviedb.org/3/movie/{}?api_key=api_key={TMDB_API_KEY}&language=en-US"
     data = requests.get(url)
     data = data.json()
     poster_path = data['poster_path']
